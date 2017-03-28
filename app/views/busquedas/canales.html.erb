@@ -1,0 +1,64 @@
+<% @title = ("UCLABOOK - Contactos") %>
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2> Contactos </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <%= link_to 'Inicio', timelines_path, method: :get %>
+                </li>
+                <li class="active">
+                    <strong>Contactos</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            
+            <% @perfiles.each do |datos| %>
+                <div class="col-lg-4">
+                    <div class="contact-box">
+                        <%= link_to perfile_path(datos.perfil.id_usuario.to_i), method: :get do %>
+                            <div class="col-sm-4">
+                                <div class="text-center">
+                                    <%= ('<img class="img-circle m-t-xs img-responsive" id="%s" alt="%s" src="data:%s;base64,%s">' % [datos.imagen.id, datos.imagen.filename, datos.imagen.tipo, datos.imagen.data]).html_safe %>
+                                    <div class="m-t-xs font-bold"><%= datos.perfil.ocupacion.capitalize %></div>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <h3><strong><%= datos.perfil.username.capitalize %></strong></h3>
+                                <p><i class="fa fa-map-marker"></i> <%= datos.perfil.pais %></p>
+                                <address>
+                                    <strong><%= datos.perfil.titulo.capitalize %></strong><br>
+                                    <%= datos.perfil.estado %><br>
+                                    <%= datos.perfil.ciudad %><br>
+                                    <abbr title="Phone">P:</abbr> <%= datos.perfil.telefono %>
+                                </address>
+                                <% unless session[:id] == datos.perfil.id_usuario.to_i %>
+                                    <% unless @seguidos.include? datos.perfil.id_usuario.to_i %>
+                                            
+                                        <div class="col-md-6">
+                                            <%= link_to '<i class="fa fa-coffee"></i> Seguir'.html_safe, "/seguids/seguir/#{params[:id]}", class: 'btn btn-default btn-sm' , method: :post %>
+                                        </div>
+                                            
+                                    <% else %>
+                                            
+                                        <div class="col-md-6">
+                                            <%= link_to '<i class="fa fa-coffee"></i> Dejar Seguir'.html_safe, "/seguids/dejar_de_seguir/#{params[:id]}", class: 'btn btn-default btn-sm' , method: :post %>
+                                        </div>
+                                            
+                                    <% end %>
+                                <% else %>
+                                    <br>
+                                <% end %>
+                                
+                            </div>
+                            <div class="clearfix"></div>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+
+        </div>
+    </div>

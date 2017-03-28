@@ -1,0 +1,206 @@
+<% @title = ("UCLABOOK - %s" %  @canal.nombre.capitalize ) %>
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                        <h2>Canales</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <%= link_to 'Inicio', timelines_path, method: :get %>
+                        </li>
+                        <li>
+                            <%= link_to 'Canales', canales_path, method: :get %>
+                        </li>
+                        <li class="active">
+                            <strong><%= @canal.nombre.capitalize %></strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content">
+            <div class="row animated fadeInRight">
+                <div class="col-md-4">
+                    
+                    <!-- DETALLES DEL CANAL -->
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Detalles del canal</h5>
+                        </div>
+                        <div>
+                            <div class="ibox-content no-padding border-left-right">
+                                <% if session[:id] == @canal.id_creador %>
+                                    <form action="/canales/subir_imagen" method="POST" id="form-subir-imagen"
+                                    enctype="multipart/form-data">
+                                        <%= token_tag %>
+                                        <label for="file-upload" class="btn btn-warning dim" style="cursor: pointer;position: absolute;color: white;">
+                                            <i class="fa fa-upload"></i>
+                                        </label>
+                                        <input name="id_canal" type="hidden" value="<%= params[:id] %>"/>
+                                        <input id="file-upload" name="foto" type="file" style="display: none;"/>
+                                    </form>
+                                <% end %>
+                                
+                                <%= ('<img class="img-responsive" id="%s" alt="%s" src="data:%s;base64,%s">' % [@imagen_canal.id, @imagen_canal.filename, @imagen_canal.tipo, @imagen_canal.data]).html_safe %>
+                            </div>
+                            
+
+                            
+                            <div class="ibox-content profile-content">
+                                <h4><strong><%= @canal.nombre.capitalize %></strong></h4>
+                                <p>
+                                    <%= @canal.descripcion %>
+                                </p>
+                                <h5>
+                                    Intereses
+                                </h5>
+                                    <div class="btn btn-xs" style="color: white;background-color: <%= @interes.descripcion %>"><%= @interes.nombre %></div>
+                                
+                                <br>
+                                <div class="user-button">
+                                    <div class="row">
+                                        <% if session[:id] == @canal.id_creador %>
+                                        
+                                            <div class="col-md-6">
+                                                <%= link_to '<i class="fa fa-pencil"></i> Editar Canal'.html_safe, perfiles_mi_perfil_editar_path, class: 'btn btn-primary btn-sm btn-block', method: :get %>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <%= link_to '<i class="fa fa-pencil"></i> Disolver Canal'.html_safe, perfiles_mi_perfil_editar_path, class: 'btn btn-danger btn-sm btn-block', method: :get %>
+                                            </div>
+                                        
+                                        <% else %>
+                                            <% unless @integrantes_canal.include? session[:id] %>
+                                            
+                                                <div class="col-md-6">
+                                                    <%= link_to '<i class="fa fa-coffee"></i> Únete'.html_safe, "/canal/unirse_canal/#{params[:id]}", class: 'btn btn-default btn-sm btn-block' , method: :post %>
+                                                </div>
+                                            
+                                            <% else %>
+                                            
+                                                <div class="col-md-6">
+                                                    <%= link_to '<i class="fa fa-coffee"></i> Dejar el canal'.html_safe, "/canal/dejar_canal/#{params[:id]}", class: 'btn btn-default btn-sm btn-block' , method: :post %>
+                                                </div>
+                                            
+                                            <% end %>
+                                        
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                
+                <!-- Integrantes -->
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <h3>Integrantes (<%= @integrantes.count %>)</h3>
+                        <div class="user-friends">
+                            <% @integrantes.each do |integrante| %>
+                                <%= link_to perfile_path( integrante.perfil.id_usuario ), method: :get do %>
+                                    <%= ('<img width="50" class="img-circle" id="%s" alt="%s" src="data:%s;base64,%s">' % [integrante.imagen.id, integrante.imagen.filename, integrante.imagen.tipo, integrante.imagen.data]).html_safe %>
+                                <% end %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+                <div class="col-md-8">
+                    
+                    <div class="ibox-content m-b-sm border-bottom">
+                        <div class="p-xs">
+                            <div class="pull-left m-r-md">
+                                <i class="fa fa-globe text-navy mid-icon"></i>
+                            </div>
+                            <h2>Bienenidos al foro de <%= @canal.nombre.capitalize %></h2>
+                            <small>Tu opinión es importante para nosotros</small>
+                        </div>
+                    </div>
+                    
+                   <!-- DISCUCIONES -->
+                   <div class="ibox-content forum-container">
+                       <div class="forum-title">
+                           <div class="pull-right forum-desc">
+                               <samll>Número de discuiones: <%= @discuiones.count %></samll>
+                           </div>
+                       </div>
+                       <% @discuiones.each do |discusion| %>
+                       <div class="forum-item">
+                           <div class="row">
+                               <div class="col-md-9">
+                                    <div>
+                                        <%= link_to "/canal/discusion/#{discusion.post.id}", method: :get do %>
+                                            <h2 class="forum-item-title"><%= discusion.post.titulo %></h2>
+                                        <% end %>
+                                    </div>
+                                    <div class="forum-sub-title" style="margin-left:0;word-wrap: break-word;overflow: hidden;">
+                                       <%= discusion.post.contenido %>
+                                    </div>
+                               </div>
+                               <div class="col-md-1 forum-info" style="top: 20px;">
+                                   <span class="views-number"><%= discusion.comentario.count %></span>
+                                   <div> 
+                                       <small>Comentarios</small>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       
+                       <% end %>
+                        <a class="btn btn-info btn-sm btn-block" data-toggle="modal" data-target="#myModal"><i class="fa fa-coffee"></i> Nueva discusión</a>
+
+                   </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB de <strong>250GB</strong> Gratis.
+            </div>
+            <div>
+                <strong>Copyright</strong> UCLABooK &copy; 2017-2018
+            </div>
+        </div>
+        
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+        
+        <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Crear un tema de discusión</h4>
+              </div>
+              <div class="modal-body">
+                
+                <form action="/posts/postear_canal" method="POST">
+                    <%= token_tag %>
+                    <input type="hidden" name="id_canal" value="<%= params[:id]%>">
+                    <input type="text" name="titulo" value="" class="form-control" placeholder="Titulo">
+                    <textarea name="contenido" class="form-control message-input" placeholder="Descripción"></textarea>
+                    <br>
+                    <button class="btn btn-primary btn-block">Crear Discusión</button>
+                </form>
+                
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+        
+          </div>
+        </div>
+        
+        <script>
+            $(document).on('ready page:load', function () {
+                $("#file-upload").change(function(){
+                    $("#form-subir-imagen").submit();
+                });
+            });
+        </script>
+
+        

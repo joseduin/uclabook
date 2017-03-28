@@ -1,0 +1,47 @@
+<% @title= "UCLABOOK - Visualizar Mensaje" %>
+
+        <div class="wrapper wrapper-content">
+        <div class="row">
+            <%= render 'menu_mensajes' %>
+            <div class="col-lg-9 animated fadeInRight">
+            <div class="mail-box-header">
+                <h2>
+                 Ver Mensaje
+                </h2>
+                <div class="mail-tools tooltip-demo m-t-md">
+
+
+                    <h3>
+                        <span class="font-noraml">Asunto: </span><%= @mensaje.chat.asunto %>
+                    </h3>
+                    <h5>
+                        <span class="pull-right font-noraml"><%= @mensaje.chat.fecha %></span>
+                        <span class="font-noraml">de: </span><%= @mensaje.perfil.username.capitalize %>
+                    </h5>
+                </div>
+            </div>
+                <div class="mail-box">
+
+
+                <div class="mail-body">
+                    <%= @mensaje.chat.contenido %>
+                </div>
+                <div class="mail-body text-right tooltip-demo">
+                    
+                    <% if @mensaje.chat.id_usuario.to_i == session[:id].to_i %>
+                        
+                        <%= link_to 'Eliminar', "/mensaje/eliminar_mensaje/#{@mensaje.chat.id}",class: 'btn btn-sm btn-danger', method: :post %>
+                    
+                    <% else %>
+                    
+                        <%= link_to 'Responder', "/mensaje/redactar_mensaje?user=#{@mensaje.chat.id_usuario}", class: 'btn btn-sm btn-success', method: :get %>
+                    
+                    <% end %>
+                </div>
+                <div class="clearfix"></div>
+
+
+                </div>
+            </div>
+        </div>
+        </div>

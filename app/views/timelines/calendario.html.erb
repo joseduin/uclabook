@@ -1,0 +1,427 @@
+<% @title= "UCLABOOK - Mi Perfil" %>
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Juan Aldana</strong>
+                             </span> <span class="text-muted text-xs block">Ing. Imformática <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a href="perfil.html">Mi Perfil</a></li>
+                            <li><a href="notifications.html">Notificaciones</a></li>
+                            <li><a href="contactos.html">Contactos</a></li>
+                            <li><a href="buzon.html">Mensajería</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login.html">Cerrar Sesión</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        UCLABOOK+
+                    </div>
+                </li>
+                <li>
+                    <a href="canalesgenerales.html"><i class="fa fa-th-large"></i> <span class="nav-label">Suscrpciones a Canales</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="canalinformatica.html">Canal de Big Data</a></li>
+                        <li><a href="canalmedicina.html">Canal De Modelado de Sistemas</a></li>
+                        <li><a href="nalinformatica.html">Canal de Diseño de App Android</a></li>
+                        <li><a href="nalinformatica.html">Canal de Software de Código Abierto</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="canalinformatica.html"><i class="fa fa-diamond"></i> <span class="nav-label">Áreas de Conocimientos</span> <span class="label label-primary pull-right">NUEVO</span></a>
+                </li>
+
+                <li>
+                    <a href="ver_mensaje.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mensajería </span><span class="label label-warning pull-right">16/24</span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="buzon.html">Buzón</a></li>
+                        <li><a href="chat.html">Email Recientes</a></li>
+                        <li><a href="redactar_mensaje.html">Redactar Mensaje</a></li>
+                    </ul>
+                </li>
+                             <li>
+                    <a href="contactos.html"><i class="fa fa-desktop"></i> <span class="nav-label">Sugerencias de Contactos</span>  <span class="pull-right label label-primary">ESPECIAL</span></a>
+                </li>
+                <li>
+                    <a href="notifications"><i class="fa fa-files-o"></i> <span class="nav-label">Busquedas</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="contactos.html">Buscar Contactos</a></li>
+                        <li><a href="canalesgenerales.html">Buscar Canales</a></li>
+                        <li><a href="404.html">Página 404 </a></li>
+                        <li><a href="500.html">Página 500 </a></li>
+                        <li><a href="canalesgenerales.html">Áreas de Conocimientos Destacadas</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="video.html"><i class="fa fa-globe"></i> <span class="nav-label">Sugerencias de Páginas</span><span class="label label-info pull-right">NEW</span></a>
+                </li>
+                <li>
+                    <a href="notifications.html"><i class="fa fa-flask"></i> <span class="nav-label">Ver MásI</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="#">Ubicación GoogleMaps</a></li>
+
+                        <li><a href="video.html">Vídeos más Populares</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Opciones de Configuración</span></a>
+                </li>
+
+                <li class="active">
+                    <a href="galeria.html"><i class="fa fa-picture-o"></i> <span class="nav-label">Mis Álbunes de Fotos</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="galeria.html">Galería de Fotos</a></li>
+                        <li class="active"><a href="galeria.html">Fotos en Carrousel</a></li>
+
+                    </ul>
+                </li>
+
+
+                <li class="special_link">
+                    <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Uso de Cookies</span></a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Búsqueda..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Bienvenidos a UCLABOOK+</span>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="notifications.html">
+                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="perfil.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right">6h feb</small>
+                                    <strong>Joel</strong> compartiendo con <strong>Maria Laurath</strong>. <br>
+                                    <small class="text-muted">3 días feb 7:58 pm - 10.02.2017</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="perfil.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a4.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right text-navy">5h feb </small>
+                                    <strong>Johnatan Sanchez</strong> compartiendo con <strong>Sohecdy Ávila</strong>. <br>
+                                    <small class="text-muted">ayer 1:21 pm - 06.02.2017</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="perfil.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">23h ago</small>
+                                    <strong>Yessica López</strong> compartiendo con <strong>Manuel Lozada</strong>. <br>
+                                    <small class="text-muted">2 días feb  2:30 pm - 18.02.2017</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="buzon.html">
+                                    <i class="fa fa-envelope"></i> <strong>Leer todos los Mensajes</strong>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="notifications.html">
+                        <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="ver_mensaje.html">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Tienes 16 mensajes
+                                    <span class="pull-right text-muted small">4 minutos feb</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="perfil.html">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 Nuevas Notificaciones
+                                    <span class="pull-right text-muted small">12 minutos feb</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="video.html">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Servicios Adicionales
+                                    <span class="pull-right text-muted small">4 minutos feb</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <strong>Ver Alertas</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li>
+                    <a href="login.html">
+                        <i class="fa fa-sign-out"></i> Cerrar Sesión
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-8">
+        <h2>Calendario</h2>
+        <ol class="breadcrumb">
+            <li>
+                <a href="index.html">Inicio</a>
+            </li>
+            <li>
+                Paginas Extras
+            </li>
+            <li class="active">
+                <strong>Calendario</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="wrapper wrapper-content">
+    <div class="row animated fadeInDown">
+        <div class="col-lg-3">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Trasladar Eventos</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#">Configuracion de Eventos</a>
+                            </li>
+                            <li><a href="#">Configuracion General</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id='external-events'>
+                        <p>Trasladar eventos y soltarlos en el calendario.</p>
+                        <div class='external-event navy-bg'>Ir a la tienda y comprar algunos productos.</div>
+                        <div class='external-event navy-bg'>Buscar los documentos en la Corporacion.</div>
+                        <div class='external-event navy-bg'>Enviar documentos a José Sosa.</div>
+                        <div class='external-event navy-bg'>Llamar a Isandra.</div>
+                        <div class='external-event navy-bg'> VideoChat con Ana.</div>
+                        <p class="m-t">
+                            <input type='checkbox' id='drop-remove' class="i-checks" checked /> <label for='drop-remove'> Remover despues de soltar</label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-content">
+                    <h2>Full Calendario</h2> es un plugin de jQuery que permite Trasladar y soltar  eventos en  el calendario.
+                    <p>
+                        <a href="http://arshaw.com/fullcalendar/" target="_blank">FullCalendario documentacion</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>Tablas </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="#">Configurar calendario</a>
+                            </li>
+                            <li><a href="#">Configuracion general</a>
+                            </li>
+                        </ul>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div id="calendar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="pull-right">
+        10GB de<strong>250GB</strong> Gratis.
+    </div>
+    <div>
+        <strong>Copyright</strong> UCLABooK &copy; 2017-2018
+    </div>
+</div>
+
+</div>
+</div>
+
+<!-- Full Calendar -->
+
+<script>
+
+    $(document).ready(function() {
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        /* initialize the external events
+         -----------------------------------------------------------------*/
+
+
+        $('#external-events div.external-event').each(function() {
+
+            // store data so the calendar knows to render an event upon drop
+            $(this).data('event', {
+                title: $.trim($(this).text()), // use the element's text as the event title
+                stick: true // maintain when user navigates (see docs on the renderEvent method)
+            });
+
+            // make the event draggable using jQuery UI
+            $(this).draggable({
+                zIndex: 1111999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+            });
+
+        });
+
+
+        /* initialize the calendar
+         -----------------------------------------------------------------*/
+        var date = new Date();
+        var d = date.getDate();
+        var m = date.getMonth();
+        var y = date.getFullYear();
+
+        $('#calendar').fullCalendar({
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            editable: true,
+            droppable: true, // this allows things to be dropped onto the calendar
+            drop: function() {
+                // is the "remove after drop" checkbox checked?
+                if ($('#drop-remove').is(':checked')) {
+                    // if so, remove the element from the "Draggable Events" list
+                    $(this).remove();
+                }
+            },
+            events: [
+                {
+                    title: 'All Day Event',
+                    start: new Date(y, m, 1)
+                },
+                {
+                    title: 'Long Event',
+                    start: new Date(y, m, d-5),
+                    end: new Date(y, m, d-2),
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d-3, 16, 0),
+                    allDay: false,
+                },
+                {
+                    id: 999,
+                    title: 'Repeating Event',
+                    start: new Date(y, m, d+4, 16, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Meeting',
+                    start: new Date(y, m, d, 10, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Lunch',
+                    start: new Date(y, m, d, 12, 0),
+                    end: new Date(y, m, d, 14, 0),
+                    allDay: false
+                },
+                {
+                    title: 'Birthday Party',
+                    start: new Date(y, m, d+1, 19, 0),
+                    end: new Date(y, m, d+1, 22, 30),
+                    allDay: false
+                },
+                {
+                    title: 'Click for Google',
+                    start: new Date(y, m, 28),
+                    end: new Date(y, m, 29),
+                    url: 'http://google.com/'
+                }
+            ],
+        });
+
+
+    });
+
+</script>

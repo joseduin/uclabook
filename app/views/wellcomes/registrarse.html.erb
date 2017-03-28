@@ -1,0 +1,71 @@
+<% @title= "UCLABOOK - Registro" %>
+
+    <div class="middle-box text-center loginscreen   animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">UB+</h1>
+
+            </div>
+            <h3>Registrarse en UB+</h3>
+            <p>Ingresa tus datos básicos</p>
+            <form action="/wellcome/validar_registrarse" method="POST" class="m-t">
+                <%= token_tag %>
+                <div class="form-group">
+                    <input type="text" name="username" class="form-control" placeholder="Nombre" value="<%= @nombre %> <%= @apellido %>" required="">
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="correo" value="<%= @email %>" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="clave" class="form-control" placeholder="contraseña" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="reclave" class="form-control" placeholder="Repetir contraseña" required="">
+                </div>
+                <div class="form-group">
+                        <div class="checkbox i-checks"><label> <input type="checkbox" name="check" style="top: 6px;" required>
+                            
+                            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal">Terminos de Política y Privacidad</button>
+                        
+                        </label></div>
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Registro</button>
+
+                <p class="text-muted text-center"><small>¿Ya tienes una Cuenta?</small></p>
+                <%= link_to "Iniciar Sesión", root_path, class: 'btn btn-sm btn-white btn-block', method: :get %>
+            </form>
+            <p class="m-t"> <small>UclaBook Sociaal Media Uclaista &copy; 2017</small> </p>
+        </div>
+    </div>
+    
+    
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+    
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Terminos de Política y Privacidad</h4>
+          </div>
+          <div class="modal-body">
+            <p>Nos robaremos todos tus datos e identidad :)</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+    </script>

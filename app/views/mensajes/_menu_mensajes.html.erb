@@ -1,0 +1,33 @@
+<div class="col-lg-3">
+    <div class="ibox float-e-margins">
+        <div class="ibox-content mailbox-content">
+            <div class="file-manager">
+                <div class="space-25"></div>
+                <h5>Archivos</h5>
+                <ul class="folder-list m-b-md" style="padding: 0">
+                    <li>
+                        <%= link_to ('<i class="fa fa-inbox" style="color: darkgray;"></i> Buzón <span class="label label-warning pull-right">%s</span>' % @mensaje_pendiente.count ).html_safe, mensaje_buzon_path, method: :get %>
+                     </li>
+                     <li>
+                        <%= link_to '<i class="fa fa-envelope"></i> Enviados'.html_safe, mensaje_enviados_path, method: :get %>
+                    </li>
+                    
+                    <li>
+                        <%= link_to '<i class="fa fa-trash-o"></i> Eliminados'.html_safe, mensaje_eliminados_path, method: :get %>
+                    </li>
+                </ul>
+                <h5>Categorías</h5>
+                <ul class="category-list" style="padding: 0">
+                    
+                    <li><%= link_to '<i class="fa fa-circle text-navy"></i> Trabajo'.html_safe, "/mensaje/categoria/1", method: :get %></li>
+                    <li><%= link_to '<i class="fa fa-circle text-danger"></i> Documentos'.html_safe, "/mensaje/categoria/2", method: :get %></li>
+                    <li><%= link_to '<i class="fa fa-circle text-primary"></i> Social'.html_safe, "/mensaje/categoria/3", method: :get %></li>
+                    <li><%= link_to '<i class="fa fa-circle text-info"></i> Área de conocimiento'.html_safe, "/mensaje/categoria/4", method: :get %></li>
+                    <li><%= link_to '<i class="fa fa-circle text-warning"></i> Clientes'.html_safe, "/mensaje/categoria/5", method: :get %></li>
+                    
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+</div>

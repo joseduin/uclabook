@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  
+    <!-- Update your html tag to include the itemscope and itemtype attributes. -->
+    <html itemscope itemtype="http://schema.org/Article">
+    
+    <!-- Place this data between the <head> tags of your website -->
+    <title><%= @postcompleto.perfil.username.capitalize %> - UB+</title>
+    <meta name="description" content="<%= @postcompleto.post.contenido[0..70] %>" />
+    <link href="https://rlv.zcache.com/i_love_heart_ub_sticker-r4e8e48695c3c40c4884d647007aead09_v9waf_8byvr_324.jpg" rel="shortcut icon" type="image/x-icon" />
+    
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="<%= @postcompleto.perfil.username.capitalize %> - UB+">
+    <meta itemprop="description" content="<%= @postcompleto.post.contenido[0..150] %>">
+    <meta itemprop="image" content="https://rlv.zcache.com/i_love_heart_ub_sticker-r4e8e48695c3c40c4884d647007aead09_v9waf_8byvr_324.jpg">
+    
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="https://rlv.zcache.com/i_love_heart_ub_sticker-r4e8e48695c3c40c4884d647007aead09_v9waf_8byvr_324.jpg">
+    <meta name="twitter:site" content="@publisher_handle">
+    <meta name="twitter:title" content="<%= @postcompleto.perfil.username.capitalize %> - UB+">
+    <meta name="twitter:description" content="<%= @postcompleto.post.contenido[0..150] %>">
+    <meta name="twitter:creator" content="@author_handle">
+    <!-- Twitter summary card with large image must be at least 280x150px -->
+    <meta name="twitter:image:src" content="https://rlv.zcache.com/i_love_heart_ub_sticker-r4e8e48695c3c40c4884d647007aead09_v9waf_8byvr_324.jpg">
+    
+    <!-- Open Graph data -->
+    <meta property="og:title" content="<%= @postcompleto.perfil.username.capitalize %> - UB+" />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="<%= @web_url %>/posts/<%= @postcompleto.post.id %>" />
+    <meta property="og:image" content="https://rlv.zcache.com/i_love_heart_ub_sticker-r4e8e48695c3c40c4884d647007aead09_v9waf_8byvr_324.jpg" />
+    <meta property="og:description" content="<%= @postcompleto.post.contenido[0..150] %>" />
+    <meta property="og:site_name" content="Site Name, i.e. Moz" />
+    <meta property="article:published_time" content="<%= @postcompleto.post.fecha %>" />
+    <meta property="article:modified_time" content="<%= @postcompleto.post.fecha %>" />
+    <meta property="article:section" content="Article Section" />
+    <meta property="article:tag" content="Article Tag" />
+    
+      
+      
+      
+  
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' />
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+  
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+</head>
+<body>
+  
+  <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                      <%= ('<img width="50" class="img-circle" id="%s" alt="%s" src="data:%s;base64,%s">' % [@postcompleto.imagen.id, @postcompleto.imagen.filename, @postcompleto.imagen.tipo, @postcompleto.imagen.data]).html_safe %>
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%= @postcompleto.perfil.username %></strong>
+                             </span> <span class="text-muted text-xs block"><%= @postcompleto.perfil.titulo %> </span> </span> </a>
+                        
+                    </div>
+                    <div class="logo-element">
+                        UB+
+                    </div>
+                </li>
+                
+                <li>
+                    <%= link_to '<i class="fa fa-home"></i> Inicia Sesión'.html_safe, root_path, method: :get %>
+                </li>
+                <li>
+                    <%= link_to '<i class="fa fa-sign-in"></i> Registrate'.html_safe, egresado_path, method: :get %>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+    
+    
+    
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+    
+    <div class="row border-bottom">
+       
+    </div>
+
+<%= yield %>
+
+
+  </div>
+        </div>
+
+</body>
+</html>

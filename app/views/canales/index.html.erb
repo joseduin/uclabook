@@ -1,0 +1,60 @@
+<% @title = ("UCLABOOK - Canales") %>
+
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-lg-9">
+            <h2> Canales </h2>
+            <ol class="breadcrumb">
+                <li>
+                    <%= link_to 'Inicio', timelines_path, method: :get %>
+                </li>
+                <li class="active">
+                    <strong>Canales</strong>
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            
+            <% @canales.each do |datos| %>
+                <div class="col-lg-3">
+                    <div class="contact-box center-version">
+                        <%= link_to canale_path(datos.canal.id.to_i), method: :get do %>
+                            
+                            <%= ('<img class="m-t-xs img-responsive" id="%s" alt="%s" src="data:%s;base64,%s">' % [datos.imagen.id, datos.imagen.filename, datos.imagen.tipo, datos.imagen.data]).html_safe %>
+                            <h3 class="m-b-xs"><strong><%= datos.canal.nombre %></strong></h3>
+                      
+                            <address class="m-t-md">
+                                <%= datos.canal.descripcion %>
+                            </address>
+                                
+                        <% end %>
+                        <div class="contact-box-footer">
+                            <!--
+                            <div class="btn-group" style="width: 100%;">
+                                <% unless session[:id] == datos.canal.id_creador.to_i %>
+                                    <% unless @integrantes_canal.include? session[:id].to_i %>
+                                            
+                                        <div class="col-md-12">
+                                            <%= link_to '<i class="fa fa-user-plus"></i> Únete'.html_safe, "/canal/unirse_canal/#{datos.canal.id}", class: 'btn btn-info btn-sm btn-block' , method: :post %>
+                                        </div>
+                                                
+                                    <% else %>
+                                                
+                                        <div class="col-md-12">
+                                            <%= link_to '<i class="fa fa-coffee"></i> Dejar Seguir'.html_safe, "/canal/dejar_canal/#{datos.canal.id}", class: 'btn btn-info btn-sm btn-block' , method: :post %>
+                                        </div>
+                                                
+                                    <% end %>
+                                <% else %>
+                                    <br>
+                                <% end %>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+
+        </div>
+    </div>

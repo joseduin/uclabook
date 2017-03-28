@@ -1,0 +1,67 @@
+<% @title = ("UCLABOOK - Galería de Fotos" ) %>
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Galería</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <%= link_to 'Inicio', timelines_path, method: :get %>
+                        </li>
+                        <!--
+                        <li>
+                            <a>Galería</a>
+                        </li>
+                        -->
+                        <li class="active">
+                            <% if session[:id] == params[:id] %>
+                                <strong>Mis Fotos</strong>
+                            <% else %>
+                                <strong>Galeria de Fotos</strong>
+                            <% end %>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+
+                    <div class="ibox-content">
+
+                        <h2>Mis Fotos Publicadas</h2>
+
+
+                        <div class="lightBoxGallery">
+                            
+                            <% @imagenes.each do |imagen| %>
+                                <%= ('<img class="img-responsive" width="200" id="%s" alt="%s" src="data:%s;base64,%s">' % [imagen.id, imagen.filename, imagen.tipo, imagen.data]).html_safe %>
+                            <% end %>
+                            
+                            <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+                            <div id="blueimp-gallery" class="blueimp-gallery">
+                                <div class="slides"></div>
+                                <h3 class="title"></h3>
+                                <a class="prev">‹</a>
+                                <a class="next">›</a>
+                                <a class="close">×</a>
+                                <a class="play-pause"></a>
+                                <ol class="indicator"></ol>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+
+            </div>
+        </div>
+

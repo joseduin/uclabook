@@ -1,0 +1,584 @@
+<% @title= "UCLABOOK - Contactos" %>
+
+    <div class="page-header">
+        <h1>Contactos</h1>
+    </div>
+
+    <div id="wrapper">
+
+    <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                <div class="dropdown profile-element"> <span>
+                     <img src="" alt="">
+              <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+           <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">Vivialby Pineda</strong>
+                 </span> <span class="text-muted text-xs block">Ing. Informática <b class="caret"></b></span> </span> </a>
+                 <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                  <li><a href="profile.html">Perfil</a></li>
+                            <li>
+<%= link_to 'Contactoss' %>
+
+                            </li>
+                            <li><a href="mailbox.html">Mensajería</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login.html">Salir</a></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        UB+
+                    </div>
+                </li>
+                <li>
+       <a href="index.html"><i class="fa fa-th-large"></i> <span class="nav-label">Estadísticas</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="index.html">Usuario</a></li>
+                        <li><a href="dashboard_2.html">Visitas</a></li>
+                        <li><a href="dashboard_3.html">Post con más Like</a></li>
+                        <li><a href="dashboard_4_1.html">General</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="layouts.html"><i class="fa fa-diamond"></i> <span class="nav-label">Configuración de Diseño</span> <span class="label label-primary pull-right">NUEVO</span></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Mas Estadísticas</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="graph_flot.html">Flot Charts</a></li>
+                        <li><a href="graph_morris.html">Morris.js Charts</a></li>
+                        <li><a href="graph_rickshaw.html">Rickshaw Charts</a></li>
+                        <li><a href="graph_chartjs.html">Chart.js</a></li>
+                        <li><a href="graph_peity.html">Peity Charts</a></li>
+                        <li><a href="graph_sparkline.html">Sparkline Charts</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="mailbox.html"><i class="fa fa-envelope"></i> <span class="nav-label">Mensajería </span><span class="label label-warning pull-right">16/24</span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="mailbox.html">Bandeja de Entrada</a></li>
+                        <li><a href="mail_detail.html">Ver Todos los Mensajes</a></li>
+                        <li><a href="mail_compose.html">Redactar Mensaje</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="widgets.html"><i class="fa fa-flask"></i> <span class="nav-label">Mis Títulos</span> </a>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">Enlaces de Interes</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="Contactos.html">Contactos</a></li>
+                        <li><a href="profile.html">Perfil</a></li>
+                        <li><a href="calendar.html">Calendario</a></li>
+                        <li><a href="faq.html">Preguntas</a></li>
+                        <li><a href="timeline.html">Timeline</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Ver Más</span><span class="label label-info pull-right">NEW</span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="toastr_notifications.html">Notificaciones</a></li>
+
+
+                        <li><a href="forum_main.html">Foro</a></li>
+                        <li><a href="google_maps.html">Google maps</a></li>
+
+                        <li><a href="chat_view.html">Chat</a></li>
+                    </ul>
+                </li>
+                <li>
+                </li>
+                <li class="active">
+                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li><a href="basic_gallery.html"> Mi Galería de Fotos</a></li>
+
+                    </ul>
+                </li>
+                <li class="landing_link">
+                    <a target="_blank" href="Landing_page/index.html"><i class="fa fa-star"></i> <span class="nav-label">Página Principal</span> <span class="label label-warning pull-right">NEW</span></a>
+                </li>
+
+
+
+        </div>
+    </nav>
+
+        <div id="page-wrapper" class="gray-bg">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" method="post" action="search_results.html">
+                <div class="form-group">
+                    <input type="text" placeholder="Abrir/Cerrar" class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Bienvenidos a UCLABOOK+</span>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+
+     <%= image_tag("a7.jpg", alt: "image", class: "img-circle")  %>
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right">8 pm febrero</small>
+                                    <strong>Noche  fría y estrellada </strong> compartiendo con <strong>Verónica Peréz</strong>. <br>
+                                    <small class="text-muted">4 días feb at 7:58 pm - 10.02.2017</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+
+     <%= image_tag("a4.jpg", alt: "image", class: "img-circle")  %>
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right text-navy">5pm febrero</small>
+                                    <strong>Luis Nieto García</strong> Compartiendo con <strong>Maria Gimenéz</strong>. <br>
+                                    <small class="text-muted">ayer 1:21 pm - 04.06.2017</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="profile.html" class="pull-left">
+
+     <%= image_tag("profile.jpg", alt: "image", class: "img-circle")  %>
+             </a>
+          <div class="media-body ">
+              <small class="pull-right">2pm febrero</small>
+               <strong>Maria García</strong> comparte con <strong>Hender Dominguez</strong>. <br>
+                                    <small class="text-muted">2 días febrero 2:30 pm - 05.02.2017</small>
+                  </div>
+              </div>
+          </li>
+         <li class="divider"></li>
+            <li>
+     <div class="text-center link-block">
+       <a href="mailbox.html">
+             <i class="fa fa-envelope"></i> <strong>
+Leer todos los Mensajes</strong>
+         </a>
+          </div>
+      </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+        <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+       <i class="fa fa-bell"></i>  <span class="label label-primary">8</span>
+      </a>
+      <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+       <a href="mailbox.html">
+        <div>
+          <i class="fa fa-envelope fa-fw"></i> Tienes 16 mensajes
+          <span class="pull-right text-muted small">4 minutos febrero</span>
+                                </div>
+                            </a>
+                        </li>
+        <li class="divider"></li>
+          <li>
+        <a href="profile.html">
+            <div>
+                 <i class="fa fa-twitter fa-fw"></i> 3 Nuevos Seguidores
+                <span class="pull-right text-muted small">12 minutos febrero</span>
+            </div>
+                    </a>
+        </li>
+         <li class="divider"></li>
+           <li>
+          <a href="grid_options.html">
+            <div>
+         <i class="fa fa-upload fa-fw"></i>
+Servidor reiniciado
+        <span class="pull-right text-muted small">4 minutos febrero</span>
+                </div>
+           </a>
+         </li>
+          <li class="divider"></li>
+        <li>
+       <div class="text-center link-block">
+        <a href="notifications.html">
+           <strong>Ver todas las alertas</strong>
+         <i class="fa fa-angle-right"></i>
+                  </a>
+             </div>
+              </li>
+           </ul>
+          </li>
+            </ul>
+
+        </nav>
+        </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-9">
+                    <h2>Contactos</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="index.html">Inicio</a>
+                        </li>
+                        <li>
+                            Ver más
+                        </li>
+                        <li class="active">
+                            <strong>Contactos</strong>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a2.jpg">
+                            <div class="m-t-xs font-bold">Desarrollador de Software</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Luis Arturo</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Barquisimeto-Lara 32/106</p>
+                        <address>
+                            <strong>Ing. en Informática</strong><br>
+                            Pedro León Torres<br>
+                            Barquisimeto<br>
+                            <abbr title="Phone">P:</abbr> (0426) 5675643
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a1.jpg">
+                            <div class="m-t-xs font-bold">Médico Integral</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Diego Mogollón</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Barquisimeto-Lara  </p>
+                        <address>
+                            <strong>Doctor</strong><br>
+                            Av. los Leones<br>
+                            Barquisimeto<br>
+                            <abbr title="Phone">P:</abbr> (0424) 4563245
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a3.jpg">
+                            <div class="m-t-xs font-bold">Agrónomo</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Patricia Fernández</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Barquisimeto-Lara</p>
+                        <address>
+                            <strong>Ing.Agrónomo</strong><br>
+                            Ruis Pineda<br>
+                            Barquisimeto<br>
+                            <abbr title="Phone">P:</abbr> (0426) 4567898
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+                            <div class="m-t-xs font-bold">CEO</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Angélica Adán</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Tepuy-Mérida</p>
+                        <address>
+                            <strong>Abogado Criminalístico</strong><br>
+                            Mérida<br>
+                            Tepuy de las Lomas<br>
+                            <abbr title="Phone">P:</abbr> (0416) 4531267
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a5.jpg">
+                            <div class="m-t-xs font-bold">Especialista en Redes</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Sandra Peréz</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Barinas-Barinas</p>
+                        <address>
+                            <strong>Ing. en Informática</strong><br>
+                            Barinas<br>
+                            Llanos de Barinas<br>
+                            <abbr title="Phone">P:</abbr> (0414) 5467877
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a6.jpg">
+                            <div class="m-t-xs font-bold">Músico de Orquesta</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Daniela Brito</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Barquisimeto-Lara</p>
+                        <address>
+                            <strong>Músico</strong><br>
+                            Barquisimeto<br>
+                            La Caldera<br>
+                            <abbr title="Phone">P:</abbr> (0416) 5469865
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a1.jpg">
+                            <div class="m-t-xs font-bold">Especialista en Marketing</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Kevin Cohen</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Riviera State 32/106</p>
+                        <address>
+                            <strong>Diseñador Gráfico</strong><br>
+                            Chiciriviche-Falcón<br>
+                             Chiciriviche<br>
+                            <abbr title="Phone">P:</abbr> (0251) 4531232
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a2.jpg">
+                            <div class="m-t-xs font-bold">Diseñador de Páginas Web</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Luis Sosa</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Barquisimeto-Lara</p>
+                        <address>
+                            <strong>Ing. en Informática</strong><br>
+                            Barquisimeto<br>
+                            La Playa Santa Isabel<br>
+                            <abbr title="Phone">P:</abbr> (0416) 4568790
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a3.jpg">
+                            <div class="m-t-xs font-bold">Consultora Criminalística</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Evelin Puerta</strong></h3>
+                        <p><i class="fa fa-map-marker"></i>Amazonas-Amazonas</p>
+                        <address>
+                            <strong>Abogado</strong><br>
+                           Amazonas<br>
+                            El Trapiche<br>
+                            <abbr title="Phone">P:</abbr> (0255) 4346533
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a4.jpg">
+                            <div class="m-t-xs font-bold">Administrador Empresarial</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Gabriel Valbuena </strong></h3>
+                        <p><i class="fa fa-map-marker"></i>Barquisimeto-Lara</p>
+                        <address>
+                            <strong>Lic. en Administración</strong><br>
+                            Barquisimeto<br>
+                            El Garabatal<br>
+                            <abbr title="Phone">P:</abbr> (0251) 4542211
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a5.jpg">
+                            <div class="m-t-xs font-bold">Profesor de matemáticas</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Maria Gimenéz</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Maracaibo-Zulia</p>
+                        <address>
+                            <strong>Lic. en Matemáticas</strong><br>
+                            Maracaibo<br>
+                         La Bombilla del Norte<br>
+                            <abbr title="Phone">P:</abbr> (0416) 4564533
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a6.jpg">
+                            <div class="m-t-xs font-bold">Planificadora de Producción</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Gabriela Peréz</strong></h3>
+                        <p><i class="fa fa-map-marker"></i>Barquisimeto-Lara</p>
+                        <address>
+                            <strong>Ing. Producción</strong><br>
+                            Barquisimeto<br>
+                            El Garabatal<br>
+                            <abbr title="Phone">P:</abbr> (0424) 4564334
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                        </a>
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a1.jpg">
+                            <div class="m-t-xs font-bold">CEO</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>Alex Johnatan</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Barquisimeto-Lara</p>
+                        <address>
+                            <strong>Ing. en Informática</strong><br>
+                            Barquisimeto<br>
+                            <br>
+                            <abbr title="Phone">P:</abbr> (0416) 5554356
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-box">
+                    <a href="profile.html">
+                    <div class="col-sm-4">
+                        <div class="text-center">
+                            <img alt="image" class="img-circle m-t-xs img-responsive" src="img/a2.jpg">
+                            <div class="m-t-xs font-bold">Especialista en Consultoría de Software</div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8">
+                        <h3><strong>John Duarte</strong></h3>
+                        <p><i class="fa fa-map-marker"></i> Barquisimeto-Lara</p>
+                        <address>
+                            <strong>Ing.en Informática</strong><br>
+                            Barquisimeto<br>
+                            Bobare<br>
+                            <abbr title="Phone">P:</abbr> (0251) 5457887
+                        </address>
+                    </div>
+                    <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        </div>
+
+
+            </div>
+        </div>
+
+        </div>
+        </div>
+
+    <script>
+        $(document).ready(function(){
+            $('.contact-box').each(function() {
+                animationHover(this, 'pulse');
+            });
+        });
+    </script>

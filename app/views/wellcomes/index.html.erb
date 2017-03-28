@@ -1,0 +1,31 @@
+<% @title= "UCLABOOK - Login" %>
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">UB+</h1>
+            </div>
+            <h3>Bienvenidos a UCLA+</h3>
+            <p>Red Social destina a estudiantes egresados de la Universidad Centroccidental "Lisandro Alvarado"
+            </p><br>
+            <p><h3 style="color:#1ab394">Iniciar Sesión</h3></p>
+            <form action="/wellcome/validar_login" method="POST" class="m-t">
+                <%= token_tag %>
+                <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="email" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="clave" class="form-control" placeholder="contraeña" required="">
+                </div>
+                <button type="submit" class="btn btn-primary block full-width m-b">Iniciar Sesion</button>
+            </form>
+            
+            <!--<a href="#"><small>Olvidó su Contraseña?</small></a>-->
+                <p class="text-muted text-center"><small>¿No tiene creada una Cuenta?</small></p>
+                
+                <%= link_to "Crear una Cuenta", egresado_path, class: 'btn btn-sm btn-white btn-block', method: :get %>
+
+            <p class="m-t"> <small>Uclabook-Social Media Uclaista&copy; 2017</small> </p>
+        </div>
+    </div>

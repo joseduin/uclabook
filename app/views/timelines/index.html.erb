@@ -1,0 +1,113 @@
+<% @title = ("UCLABOOK - Timeline Privado" ) %>
+<div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-6">
+                    <h2>Timeline Privado</h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <%= link_to 'Timeline', timelines_path, method: :get %>
+                        </li>
+                        <li class="active">
+                            <strong>Privado</strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-sm-6">
+                    <h2></h2>
+                    <ol class="breadcrumb" style="float:right;">
+                        <li>
+                            <%= link_to 'Publico', timeline_publico_path, method: :get %>
+                        </li>
+                    </ol>
+                </div>
+            </div><br>
+            <div class="row">
+                <div class="col-lg-12">
+                    
+                    <!-- POST -->
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title" style="border-color: #9b59b6;">
+                            <h5>Postear</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div class="feed-activity-list">
+                                    <form action="/posts/postear" method="POST">
+                                        <%= token_tag %>
+                                        <input type="hidden" name="titulo" value="">
+                                        <textarea name="contenido" class="form-control message-input" placeholder="¿Que estas pensando?"></textarea>
+                                        <br>
+                                        <button class="btn btn-primary btn-block">Publicar</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div><br>
+                    
+                    <!-- TIMELINE -->
+                    <div class="wrapper wrapper-content animated fadeInRight">
+                        <div class="ibox-content forum-post-container">
+                            <% @postes.each do |posts| %>
+                                <div class="media feed-element">
+                                    <div class="ibox-tools">
+                                        <% unless session[:id].nil? %>
+                                            <a style="float: left;" class="btn btn-primary dim" data-toggle="collapse" data-target="#post<%= posts.post.id %>"><i class="fa fa-comments"></i></a>
+                                        <% end %>
+                                        <div class="fb-share-button btn btn-success dim" style="float: left;" data-href="<%= @web_url %>/posts/<%= posts.post.id %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= @web_uft8 %>%2Fposts%2F<%= posts.post.id %>&amp;src=sdkpreparse" style="height:20px"><i class="fa fa-facebook"></i></a></div>
+                                        <div class="btn btn-info  dim">
+                                            <a href="https://twitter.com/share?url=<%= @web_uft8 %>%2Fposts%2F<%= posts.post.id %>&original_referer=<%= @web_uft8 %>%2Fposts%2F<%= posts.post.id %>&text=UB+ <%= posts.perfil.username.capitalize %> : <%= posts.post.contenido[0..70] %>. Sigue leyendo en " class="twitter-share-button" data-url="<%= @web_url %>/posts/<%= posts.post.id %>" data-lang="es" data-show-count="false" style="height:20px"><i class="fa fa-twitter"></i></a>
+                                        </div>
+                                    </div>
+                                    
+                                    <%= link_to perfile_path( posts.perfil.id_usuario ), class: 'forum-avatar' , method: :get do %>
+                                        <%= ('<img width="50" class="img-circle" id="%s" alt="%s" src="data:%s;base64,%s">' % [posts.imagen.id, posts.imagen.filename, posts.imagen.tipo, posts.imagen.data]).html_safe %>
+                                        <div class="author-info">
+                                            <strong>fecha:</strong> <%= posts.post.fecha %>
+                                        </div>
+                                    <% end %>
+                                    <div class="media-body" style="width: auto;">
+                                        <h4 class="media-heading"><%= posts.post.titulo %></h4>
+                                        <%= posts.post.contenido %>
+                                        <br>
+                                        <br>
+                                        - <strong><%= posts.perfil.username.capitalize %></strong>
+                                        
+                                        <!-- COMENTAR -->
+                                        <div class="media collapse" id="post<%= posts.post.id %>">
+                                            <div class="media-body" style="width: auto;">
+                                                <form action="/posts/comentar" method="POST">
+                                                    <%= token_tag %>
+                                                    <input type="hidden" name="id_post" value="<%= posts.post.id %>">
+                                                    <textarea name="contenido" class="form-control" placeholder="Escribe un comentario.."></textarea>
+                                                    <br>
+                                                    <button class="btn btn-primary btn-block">Comentar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- COMENTARIOS -->
+                                        <% posts.comentario.each do |comentario| %>
+                                            <div class="media">
+                                                <div class="media-body" style="width: auto;">
+                                                    <p style="margin-left: 10px;"><%= comentario.comentario.contenido %></p>
+                                                    <%= link_to perfile_path(comentario.perfil.id_usuario.to_i), method: :get do %>
+                                                        - <%= comentario.perfil.username.capitalize %>
+                                                    <% end %>
+                                                    <br>
+                                                    <small class="text-muted"><strong>fecha:</strong> <%= comentario.comentario.fecha %></small>
+                                                </div>
+                                            </div>
+                                        <% end %>
+                                        
+                                    </div>
+                                </div>
+                            <% end %>
+                                    
+                        </div>
+                    </div>
+                </div>

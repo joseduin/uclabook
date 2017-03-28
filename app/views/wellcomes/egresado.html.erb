@@ -1,0 +1,31 @@
+<% @title= "UCLABOOK - Egresado" %>
+
+    <div class="middle-box text-center loginscreen  animated fadeInDown">
+        <div>
+            <div>
+
+                <h1 class="logo-name">UB+</h1>
+
+            </div>
+            <h3>Antes de continuar, primero debes..</h3>
+            <p>Introducir tu número de cédula para comprobar tus datos como egresado
+            </p><br>
+            <form action="/wellcome/validar_egresado" method="POST" class="m-t form-group">
+                <%= token_tag %>
+                <div class="form-inline">
+                    <select name="nacionalidad" class="form-control">
+                      <option value="V">V</option>
+                      <option value="E">E</option>
+                    </select>
+
+                    <input type="text" name="cedula" class="form-control" placeholder="Cédula" required="">
+                </div><br>
+                <button type="submit" class="btn btn-primary block full-width m-b">Validar</button>
+            </form>
+            
+                <p class="text-muted text-center"><small>¿Ya tienes una Cuenta?</small></p>
+                <%= link_to "Iniciar Sesión", root_path, class: 'btn btn-sm btn-white btn-block', method: :get %>
+
+            <p class="m-t"> <small>Uclabook-Social Media Uclaista&copy; 2017</small> </p>
+        </div>
+    </div>

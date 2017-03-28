@@ -1,0 +1,113 @@
+<% @title= "UCLABOOK - Un paso mas" %>
+
+    <div class="text-center loginscreen animated fadeInDown" style="margin: 0 30%;">
+        <div>
+            <div>
+
+                <h1 class="logo-name">UB+</h1>
+
+            </div>
+            <h3>Casi estamos listos, solo un paso mas :)</h3>
+            <p>Cuentanos un poco sobre ti..</p>
+            <form action="/wellcome/validar_un_paso_mas" method="POST" class="m-t"
+            enctype="multipart/form-data">
+                <%= token_tag %>
+                
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Fecha de Nacimiento:</label>
+                    <div class="form-inline col-sm-8">
+                        <select name="day" class="form-control">
+                            <% for i in 1..31 %>
+                              <option value="<%= i %>"><%= i %></option>
+                            <% end %>
+                        </select>
+                        
+                        <select name="month " class="form-control">
+                            <option value="01">Enero</option>
+                            <option value="02">Febrero</option>
+                            <option value="03">Marzo</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Mayo</option>
+                            <option value="06">Junio</option>
+                            <option value="07">Julio</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+                        
+                        <select name="year" class="form-control">
+                            <% (1950..2017).each do |i|  %>
+                              <option value="<%= i %>"><%= i %></option>
+                            <% end %>
+                        </select>
+                        
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Teléfono:</label>
+                    <div class="col-sm-8">
+                        <input type="phone" name="telefono" class="form-control" placeholder="Telefono" required>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Titulo:</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="titulo" value="<%= @carrera %>" class="form-control" placeholder="Titulo" required>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Ocupación:</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="ocupacion" class="form-control" placeholder="Ocupación" required>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Pais</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="pais" class="form-control" placeholder="Pais" required>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Estado</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="estado" class="form-control" placeholder="Estado" required>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Ciudad</label>
+                    <div class="col-sm-8">
+                        <input type="text" name="ciudad" class="form-control" placeholder="Ciudad" required>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Sube una foto tuya</label>
+                    <div class="col-sm-8">
+                        <input type='file' name="foto" class="form-control" />                    
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Cuentanos más sobre ti</label>
+                    <div class="col-sm-8">
+                        <textarea name="sobre_mi" class="form-control" placeholder="Cuentanos más sobre ti" required></textarea>
+                    </div>
+                </div>
+                <div class="form-group" style="padding-bottom: 30px;">
+                    <label class="control-label col-sm-4" >Cuales son tus intereses?</label>
+                    <div class="col-sm-8">
+                        <select multiple class="form-control" name="intereses[]" id="intereses" required>
+                            <%= @intereses.each do |interes| %>
+                                <option value="<%= interes.id %>"><%= interes.nombre %></option>
+                            <% end %>
+                        </select>    
+                    </div>
+                </div>
+                <br>
+                
+                <button type="submit" class="btn btn-primary block full-width m-b">Finalizar</button>
+            </form>
+            
+            <p class="m-t"> <small>UclaBook Sociaal Media Uclaista &copy; 2017</small> </p>
+        </div>
+    </div>

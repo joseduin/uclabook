@@ -1,0 +1,97 @@
+<% if @bool %>
+    <% @title= "UCLABOOK - Buzón de Mensajes" %>
+<% else %>
+    <% @title= "UCLABOOK - Enviados" %>
+<% end %>
+
+        <div class="wrapper wrapper-content">
+        <div class="row">
+            <%= render 'menu_mensajes' %>
+            <div class="col-lg-9 animated fadeInRight">
+            <div class="mail-box-header">
+
+                <!--
+                <form method="get" action="index.html" class="pull-right mail-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control input-sm" name="search" placeholder="Buscar por Correo">
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-sm btn-primary">
+                                Buscar
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                -->
+                
+                <div class="pull-right">
+                    <%= link_to 'Redactar Mensajes', mensaje_redactar_mensaje_path, class: 'btn btn-block btn-primary compose-mail' , method: :get %>
+                </div>
+
+                
+                <h2>
+                    <% if @bool %>
+                       Bandeja de Entreda (<%= @mensajes.count %>)
+                    <% else %>
+                        Bandeja de Salida (<%= @mensajes.count %>)
+                    <% end %>
+                </h2>
+                <div class="mail-tools tooltip-demo m-t-md">
+                    <div class="btn-group">
+                        <%= link_to '<i class="fa fa-refresh" style="color: darkgray;"></i> Refrescar'.html_safe, "", class: 'btn btn-white btn-sm', method: :get %>
+                    </div>
+
+                </div>
+            </div>
+                <div class="mail-box">
+
+                <table class="table table-hover table-mail">
+                <tbody>
+                <% @mensajes.each do |mensaje| %>
+                    
+                        <% if @bool %>
+                         
+                           <% if mensaje.chat.estatus.to_i == 1 %>
+                               <tr class="unread">
+                           <% else %>
+                                <tr class="read">
+                            <% end %>
+                           
+                        <% else %>
+                            <tr class="read">
+                        <% end %>
+                                        
+                            <td class="mail-ontact">
+                                <%= link_to mensaje_path(mensaje.chat.id), method: :get do %>
+                                    <%= "<strong>para:</strong>".html_safe unless @bool %> <%= mensaje.perfil.username.capitalize %>
+                                <% end %>
+                            </td>
+                            <td class="mail-subject">
+                                <%= link_to mensaje_path(mensaje.chat.id), method: :get do %>
+                                    <%= mensaje.chat.asunto %>
+                                <% end %>
+                            </td>
+                            <td class="text-right mail-date">
+                                <%= link_to mensaje_path(mensaje.chat.id), method: :get do %>
+                                    <%= mensaje.chat.fecha %>
+                                <% end %>
+                            </td>
+                            
+                        </tr>
+
+                <% end %>
+                </tbody>
+                </table>
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB de<strong>250GB</strong> Gratis.
+            </div>
+            <div>
+                <strong>Copyright</strong> UCLABooK &copy; 2017-2018
+            </div>
+        </div>

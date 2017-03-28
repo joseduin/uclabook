@@ -1,0 +1,5 @@
+<% if session[:id] == @perfil_amigo.id_usuario %>
+    <%= render "perfil", :@perfil_amigo => @perfil, :@imagen_perfil_amigo => @imagen_perfil %>    
+<% else %>
+    <%= render "perfil", :@perfil_amigo => @perfil_amigo, :@imagen_perfil_amigo => @imagen_perfil_amigo %>   
+<% end %>

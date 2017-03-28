@@ -1,0 +1,383 @@
+<% if session[:id] == @perfil_amigo.id_usuario %>
+    <% @title = ("UCLABOOK - Mi perfil" ) %>
+<% else %>
+    <% @title = ("UCLABOOK - %s" %  @perfil_amigo.username.capitalize ) %>
+<% end %>
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <% if session[:id] == @perfil_amigo.id_usuario %>
+                        <h2>Mi perfil</h2>
+                    <% else %>
+                        <h2><%=  @perfil_amigo.username.capitalize %></h2>
+                    <% end %>
+                    
+                    <ol class="breadcrumb">
+                        <li>
+                            <%= link_to 'Inicio', timelines_path, method: :get %>
+                        </li>
+                        <li class="active">
+                            <% if session[:id] == @perfil_amigo.id_usuario %>
+                                <strong>Mi perfil</strong>
+                            <% else %>
+                                <strong><%=  @perfil_amigo.username.capitalize %></strong>
+                            <% end %>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content">
+            <div class="row animated fadeInRight">
+                <div class="col-md-4">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Detalles del perfil</h5>
+                        </div>
+                        <div>
+                            <div class="ibox-content no-padding border-left-right">
+                                <% if session[:id] == @perfil_amigo.id_usuario %>
+                                    <form action="/subir_imagen" method="POST" id="form-subir-imagen"
+                                    enctype="multipart/form-data">
+                                        <%= token_tag %>
+                                        <label for="file-upload" class="btn btn-warning dim" style="cursor: pointer;position: absolute;color: white;">
+                                            <i class="fa fa-upload"></i>
+                                        </label>
+                                        <input id="file-upload" name="foto" type="file" style="display: none;"/>
+                                    </form>
+                                <% else %>
+                                    <%= link_to '<i class="fa fa-picture-o" style="cursor: pointer;position: absolute;padding: 5px;color: black;"></i>'.html_safe, "/timeline/galeria/#{(@perfil_amigo.id_usuario)}", method: :get %>
+                                <% end %>
+                                
+                                <%= ('<img class="img-responsive" id="%s" alt="%s" src="data:%s;base64,%s">' % [@imagen_perfil_amigo.id, @imagen_perfil_amigo.filename, @imagen_perfil_amigo.tipo, @imagen_perfil_amigo.data]).html_safe %>
+                            </div>
+                            
+
+                            
+                            <div class="ibox-content profile-content">
+                                <h4><strong><%= @perfil_amigo.username.capitalize %></strong></h4>
+                                <p><i class="fa fa-map-marker"></i> <%= @perfil_amigo.pais %> <%= @perfil_amigo.ciudad %> Edo. <%= @perfil_amigo.estado %></p>
+                                <h5>
+                                    Sobre mi
+                                </h5>
+                                <p>
+                                    <%= @perfil_amigo.sobre_mi %>
+                                </p>
+                                <h5>
+                                    Intereses
+                                </h5>
+                                <% @intereses.each do |interes| %>
+                                    <div class="btn btn-xs" style="color: white;background-color: <%= interes.descripcion %>"><%= interes.nombre %></div>
+                                <% end %>
+                                
+                                <div class="row m-t-lg">
+                                    <div class="col-md-3">
+                                        <!--<span class="bar">5,3,9,6,5,9,7,3,5,2</span>-->
+                                        <h5><strong>169</strong> Posts</h5>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--<span class="line">5,3,9,6,5,9,7,3,5,2</span>-->
+                                        <% if session[:id] == @perfil_amigo.id_usuario %>
+                                            <%= link_to "<h5><strong>#{ @seguidos.count }</strong> Seguidos</h5>".html_safe, "/seguids/seguidos/#{session[:id]}", method: :get %>
+                                        <% else %>
+                                            <%= link_to "<h5><strong>#{ @seguidos.count }</strong> Seguidos</h5>".html_safe, "/seguids/seguidos/#{params[:id]}", method: :get %>
+                                        <% end %>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!--<span class="bar">5,3,2,-1,-3,-2,2,3,5,2</span>-->
+                                        <% if session[:id] == @perfil_amigo.id_usuario %>
+                                            <%= link_to "<h5><strong>#{ @seguidores.count }</strong> Seguidores</h5>".html_safe, "/seguids/seguidores/#{session[:id]}", method: :get %>
+                                        <% else %>
+                                            <%= link_to "<h5><strong>#{ @seguidores.count }</strong> Seguidores</h5>".html_safe, "/seguids/seguidores/#{params[:id]}", method: :get %>
+                                        <% end %>
+                                        
+                                    </div>
+                                </div>
+                                
+                                <br>
+                                <div class="user-button">
+                                    <div class="row">
+                                        <% if session[:id] == @perfil_amigo.id_usuario %>
+                                        
+                                            <div class="col-md-6">
+                                                <%= link_to '<i class="fa fa-pencil"></i> Editar Perfil'.html_safe, perfiles_mi_perfil_editar_path, class: 'btn btn-primary btn-sm btn-block', method: :get %>
+                                            </div>
+                                        
+                                        <% else %>
+                                            
+                                            <div class="col-md-6">
+                                                <%= link_to '<i class="fa fa-envelope"></i> Enviar Mensaje'.html_safe, "/mensaje/redactar_mensaje?user=#{@perfil_amigo.id_usuario}", class: 'btn btn-primary btn-sm btn-block', method: :get %>
+                                            </div>
+                                            
+                                            <% unless @seguidores.include? session[:id] %>
+                                            
+                                                <div class="col-md-6">
+                                                    <%= link_to '<i class="fa fa-coffee"></i> Seguir'.html_safe, "/seguids/seguir/#{params[:id]}", class: 'btn btn-default btn-sm btn-block' , method: :post %>
+                                                </div>
+                                            
+                                            <% else %>
+                                            
+                                                <div class="col-md-6">
+                                                    <%= link_to '<i class="fa fa-coffee"></i> Dejar Seguir'.html_safe, "/seguids/dejar_de_seguir/#{params[:id]}", class: 'btn btn-default btn-sm btn-block' , method: :post %>
+                                                </div>
+                                            
+                                            <% end %>
+                                        
+                                        <% end %>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                    </div>
+                <div class="col-md-8">
+                    
+                    <!-- POST -->
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title" style="border-color: #9b59b6;">
+                            <h5>Postear</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div>
+                                <div class="feed-activity-list">
+                                    <form action="/posts/postear" method="POST">
+                                        <%= token_tag %>
+                                        <input type="hidden" name="titulo" value="">
+                                        <textarea name="contenido" class="form-control message-input" placeholder="¿Que estas pensando?"></textarea>
+                                        <br>
+                                        <button class="btn btn-primary btn-block">Publicar</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+                    </div><br>
+                    
+                    <!-- ACTIVIDADES -->
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title" style="border-color: #e67e22;">
+                            <h5>Actividades</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                    <i class="fa fa-wrench"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user">
+                                    <li><a href="#">Configurar privacidad</a>
+                                    </li>
+                                    <li><a href="#">Configuracion General</a>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+
+                            <div>
+                                <div class="feed-activity-list">
+                                    
+                                    <% @postes.each do |posts| %>
+                                    <div class="media feed-element">
+                                        <div class="ibox-tools">
+                                            <% unless session[:id].nil? %>
+                                                <a style="float: left;" class="btn btn-primary dim" data-toggle="collapse" data-target="#post<%= posts.post.id %>"><i class="fa fa-comments"></i></a>
+                                            <% end %>
+                                            <div class="fb-share-button btn btn-success dim" style="float: left;" data-href="<%= @web_url %>/posts/<%= posts.post.id %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= @web_uft8 %>%2Fposts%2F<%= posts.post.id %>&amp;src=sdkpreparse" style="height:20px"><i class="fa fa-facebook"></i></a></div>
+                                            <div class="btn btn-info  dim">
+                                                <a href="https://twitter.com/share?url=<%= @web_uft8 %>%2Fposts%2F<%= posts.post.id %>&original_referer=<%= @web_uft8 %>%2Fposts%2F<%= posts.post.id %>&text=UB+ <%= @perfil_amigo.username.capitalize %> : <%= posts.post.contenido[0..70] %>. Sigue leyendo en " class="twitter-share-button" data-url="<%= @web_url %>/posts/<%= posts.post.id %>" data-lang="es" data-show-count="false" style="height:20px"><i class="fa fa-twitter"></i></a>
+                                            </div>
+                                            <% if session[:id] == @perfil_amigo.id_usuario %>
+                                                <%= link_to '<i class="fa fa-times"></i>'.html_safe, "/posts/eliminar_post/#{posts.post.id}", class: "btn btn-danger dim", method: :post %>
+                                            <% end %>
+                                        </div>
+                            
+                                        <%= link_to perfile_path( @perfil_amigo.id ), class: 'forum-avatar' , method: :get do %>
+                                            <%= ('<img width="50" class="img-circle" id="%s" alt="%s" src="data:%s;base64,%s">' % [@imagen_perfil_amigo.id, @imagen_perfil_amigo.filename, @imagen_perfil_amigo.tipo, @imagen_perfil_amigo.data]).html_safe %>
+                                            <div class="author-info">
+                                                <strong>fecha:</strong> <%= posts.post.fecha %>
+                                            </div>
+                                        <% end %>
+                                        <div class="media-body" style="width: auto;">
+                                            <h4 class="media-heading"><%= posts.post.titulo %></h4>
+                                            <%= posts.post.contenido %>
+                                            <br>
+                                            <br>
+                                            - <strong><%= @perfil_amigo.username.capitalize %></strong>
+                                            
+                                            <!-- COMENTAR -->
+                                            <div class="media collapse" id="post<%= posts.post.id %>">
+                                                <div class="media-body" style="width: auto;">
+                                                    <form action="/posts/comentar" method="POST">
+                                                        <%= token_tag %>
+                                                        <input type="hidden" name="id_post" value="<%= posts.post.id %>">
+                                                        <textarea name="contenido" class="form-control" placeholder="Escribe un comentario.."></textarea>
+                                                        <br>
+                                                        <button class="btn btn-primary btn-block">Comentar</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- COMENTARIOS -->
+                                            <% posts.comentario.each do |comentario| %>
+                                                <div class="media">
+                                                    <div class="media-body" style="width: auto;">
+                                                        <p style="margin-left: 10px;"><%= comentario.comentario.contenido %></p>
+                                                        <%= link_to perfile_path(comentario.perfil.id_usuario.to_i), method: :get do %>
+                                                            - <%= comentario.perfil.username.capitalize %>
+                                                        <% end %>
+                                                        <br>
+                                                        <small class="text-muted"><strong>fecha:</strong> <%= comentario.comentario.fecha %></small>
+                                                    </div>
+                                                </div>
+                                            <% end %>
+                                        </div>
+                                    </div>
+                                    <% end %>
+
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a1.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right text-navy">1m feb</small>
+                                            <strong>José Martinez</strong> está siguiendo a <strong>Moises Valera</strong>. <br>
+                                            <small class="text-muted">Hoy 4:21 pm - 12.02.2017</small>
+                                            <div class="actions">
+                                                <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Me gusta </a>
+                                                <a class="btn btn-xs btn-danger"><i class="fa fa-heart"></i> Me encanta</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/profile.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right">5m ago</small>
+                                            <strong>Maholy Rada</strong> posteó un nuevo canal. <br>
+                                            <small class="text-muted">Hoy 5:60 pm - 12.02.2017</small>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a2.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right">2h feb</small>
+                                            <strong>Luis Marquez</strong> publicó un mensaje en el sitio de <strong>Moises Valera</strong>  <br>
+                                            <small class="text-muted">Hoy 2:10 pm - 12.02.2017</small>
+                                            <div class="well">
+                                                Hola hermano, como te va? Cuando nos reunimos?
+                                            </div>
+                                            <div class="pull-right">
+                                                <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Me gusta </a>
+                                                <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Me encanta</a>
+                                                <a class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Mensajes</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a3.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right">2h feb</small>
+                                            <strong>Patricia Freitez</strong> agregó 1 foto a <strong>Daniela Brito</strong>. <br>
+                                            <small class="text-muted">2 días feb a las 8:30am</small>
+                                            <div class="photos">
+                                                <a target="_blank" href="http://24.media.tumblr.com/20a9c501846f50c1271210639987000f/tumblr_n4vje69pJm1st5lhmo1_1280.jpg"> <img alt="image" class="feed-photo" src="img/p1.jpg"></a>
+                                                <a target="_blank" href="http://37.media.tumblr.com/9afe602b3e624aff6681b0b51f5a062b/tumblr_n4ef69szs71st5lhmo1_1280.jpg"> <img alt="image" class="feed-photo" src="img/p3.jpg"></a>
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a4.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right text-navy">5h feb</small>
+                                            <strong>José Duín</strong> está siguiendo a <strong>Maholy Rada</strong>. <br>
+                                            <small class="text-muted"> Ayer 1:21 pm - 11.02.2017</small>
+                                            <div class="actions">
+                                                <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Me gusta </a>
+                                                <a class="btn btn-xs btn-white"><i class="fa fa-heart"></i> Me encanta</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a5.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right">2h feb</small>
+                                            <strong>Karla Mujica</strong> publicó un mensaje en el sitio de <strong>Moises Valera</strong> <br>
+                                            <small class="text-muted"> Ayer 5:20 pm - 11.02.2017</small>
+                                            <div class="well">
+                                                Como estas colega? Espero verte pronto. (Y)
+                                            </div>
+                                            <div class="pull-right">
+                                                <a class="btn btn-xs btn-white"><i class="fa fa-thumbs-up"></i> Me gusta </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/profile.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right">23h feb</small>
+                                            <strong>Maholy Rada</strong> sigue a <strong>Karla Mujica</strong>. <br>
+                                            <small class="text-muted">2 días feb a las 2:30 am - 11.02.2017</small>
+                                        </div>
+                                    </div>
+                                    <div class="feed-element">
+                                        <a href="#" class="pull-left">
+                                            <img alt="image" class="img-circle" src="img/a7.jpg">
+                                        </a>
+                                        <div class="media-body ">
+                                            <small class="pull-right">46h feb</small>
+                                            <strong>José Sosa</strong> está siguiendo a <strong>Blanca Linarez</strong>. <br>
+                                            <small class="text-muted">3 días feb a las 7:58 pm - 10.02.2017</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-primary btn-block m"><i class="fa fa-arrow-down"></i> Mostrar Más</button>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB de <strong>250GB</strong> Gratis.
+            </div>
+            <div>
+                <strong>Copyright</strong> UCLABooK &copy; 2017-2018
+            </div>
+        </div>
+        
+        <script>
+            $(document).on('ready page:load', function () {
+                $("#file-upload").change(function(){
+                    $("#form-subir-imagen").submit();
+                });
+            });
+        </script>
+
+        

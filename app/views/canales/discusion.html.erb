@@ -1,0 +1,93 @@
+<% @title = ("UCLABOOK - %s" %  @discusion.post.titulo.capitalize ) %>
+
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                        <h2>Discusión sobre <%= @discusion.post.titulo.capitalize %></h2>
+                    <ol class="breadcrumb">
+                        <li>
+                            <%= link_to 'Inicio', timelines_path, method: :get %>
+                        </li>
+                        <li>
+                            <%= link_to 'Canal', :back, method: :get %>
+                        </li>
+                        <li class="active">
+                            <strong><%= @discusion.post.titulo.capitalize %></strong>
+                        </li>
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+            </div>
+        <div class="wrapper wrapper-content">
+            <div class="row animated fadeInRight">
+
+                <div class="col-lg-10 col-lg-offset-1">
+                   <div class="ibox">
+                       <div class="ibox-content">
+                           <div class="pull-right">
+                               <% @discusion.perfil.username.capitalize %>
+                           </div>
+                           <div class="text-center article-title">
+                               <small class="text-muted"><i class="fa fa-clock-o"></i><%= @discusion.post.fecha %></small>
+                               <h1><%= @discusion.post.titulo.capitalize %></h1>
+                           </div>
+                           <p><%= @discusion.post.contenido.capitalize %></p>
+                           <hr>
+                           <div class="row">
+                               <div class="col-lg-12">
+                                   <h2>Comentarios</h2>
+                                   <% @discusion.comentario.each do |comentario| %>
+                                   <div class="social-feed-box">
+                                       <div class="social-avatar">
+                                           <div class="media-body">
+                                                <%= link_to perfile_path(comentario.perfil.id_usuario.to_i), method: :get do %>
+
+                                                   <%= comentario.perfil.username.capitalize %></a>
+                                                <% end %>
+                                                   <small class="text-muted"><%= comentario.comentario.fecha %></small>
+                                           </div>
+                                       </div>
+                                       <div class="social-body">
+                                           <p><%= comentario.comentario.contenido %></p>
+                                       </div>
+                                   </div>
+                                    <% end %>
+                               </div>
+                           </div>
+                           <div class="row">
+                               <div class="col-lg-12">
+                                    <form action="/posts/comentar_canal" method="POST">
+                                        <%= token_tag %>
+                                        <input type="hidden" name="id_post" value="<%= @discusion.post.id %>">
+                                        <textarea name="contenido" class="form-control" placeholder="Escribe un comentario.."></textarea>
+                                        <br>
+                                        <button class="btn btn-primary btn-block">Comentar</button>
+                                    </form>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   
+
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="pull-right">
+                10GB de <strong>250GB</strong> Gratis.
+            </div>
+            <div>
+                <strong>Copyright</strong> UCLABooK &copy; 2017-2018
+            </div>
+        </div>
+  
+        <script>
+            $(document).on('ready page:load', function () {
+                $("#file-upload").change(function(){
+                    $("#form-subir-imagen").submit();
+                });
+            });
+        </script>
+
+        

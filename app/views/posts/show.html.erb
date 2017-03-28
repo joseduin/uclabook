@@ -1,0 +1,45 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-sm-4">
+        <h2>Post de <%= @postcompleto.perfil.username.capitalize %></h2>
+        <ol class="breadcrumb">
+            <li>
+                <%= link_to 'Timeline', timelines_path, method: :get %>
+            </li>
+            <li class="active">
+                <strong>Publicación</strong>
+            </li>
+        </ol>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content forum-post-container">
+                <div class="media feed-element">
+                    <div class="ibox-tools">
+                        <% unless session[:id].nil? %>
+                            <a style="float: inherit;"><i class="fa fa-comments"></i></a>
+                        <% end %>
+                        <div class="fb-share-button" style="float: left;" data-href="<%= @web_url %>/posts/<%= @postcompleto.post.id %>" data-layout="button_count" data-size="small" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%= @web_uft8 %>%2Fposts%2F<%= @postcompleto.post.id %>&amp;src=sdkpreparse" style="height:20px"><i class="fa fa-facebook"></i></a></div>
+                        <a href="https://twitter.com/share?url=<%= @web_uft8 %>%2Fposts%2F<%= @postcompleto.post.id %>&original_referer=<%= @web_uft8 %>%2Fposts%2F<%= @postcompleto.post.id %>&text=UB+ <%= @postcompleto.perfil.username.capitalize %> : <%= @postcompleto.post.contenido[0..70] %>. Sigue leyendo en " class="twitter-share-button" data-url="<%= @web_url %>/posts/<%= @postcompleto.post.id %>" data-lang="es" data-show-count="false" style="height:20px"><i class="fa fa-twitter"></i></a>
+                    </div>
+                                    
+                    <%= link_to perfile_path( @postcompleto.perfil.id_usuario ), class: 'forum-avatar' , method: :get do %>
+                        <%= ('<img width="50" class="img-circle" id="%s" alt="%s" src="data:%s;base64,%s">' % [@postcompleto.imagen.id, @postcompleto.imagen.filename, @postcompleto.imagen.tipo, @postcompleto.imagen.data]).html_safe %>
+                        <div class="author-info">
+                            <strong>fecha:</strong> <%= @postcompleto.post.fecha %>
+                        </div>
+                    <% end %>
+                    <div class="media-body" style="width: auto;">
+                        <h4 class="media-heading"><%= @postcompleto.post.titulo %></h4>
+                        <%= @postcompleto.post.contenido %>
+                        <br>
+                        <br>
+                        - <%= @postcompleto.perfil.username.capitalize %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

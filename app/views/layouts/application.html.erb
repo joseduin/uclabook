@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @title %></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://rlv.zcache.com/i_love_heart_ub_sticker-r4e8e48695c3c40c4884d647007aead09_v9waf_8byvr_324.jpg" rel="shortcut icon" type="image/x-icon" />
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css' />
+  <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' />
+  
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  
+</head>
+<body>
+  
+  <nav class="navbar-default navbar-static-side" role="navigation">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header">
+                    <div class="dropdown profile-element"> <span>
+                      <%= ('<img width="50" class="img-circle" id="%s" alt="%s" src="data:%s;base64,%s">' % [@imagen_perfil.id, @imagen_perfil.filename, @imagen_perfil.tipo, @imagen_perfil.data]).html_safe %>
+                             </span>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold"><%= @perfil.username %></strong>
+                             </span> <span class="text-muted text-xs block"><%= @perfil.titulo %> <b class="caret"></b></span> </span> </a>
+                        <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            
+                            <li><%= link_to 'Mi Perfil', perfiles_path, method: :get %></li>
+                            <li><%= link_to 'Timeline', timelines_path, method: :get %></li>
+                            <li><%= link_to 'Seguidores', "/seguids/seguidores/#{session[:id]}", method: :get %></li>
+                            <li><%= link_to 'Seguidos', "/seguids/seguidos/#{session[:id]}", method: :get %></li>
+                            <li><%= link_to 'Mensajería', mensaje_buzon_path, method: :get %></li>
+                            <li class="divider"></li>
+                            <li><%= link_to 'Cerrar Sesión', log_out_path, method: :get %></li>
+                        </ul>
+                    </div>
+                    <div class="logo-element">
+                        UB+
+                    </div>
+                </li>
+                <li>
+                    <a data-toggle="collapse" data-target="#padre1"><i class="fa fa-th-large"></i> <span class="nav-label">Canales</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse" id="padre1">
+                        <li><%= link_to 'Crear Canal', canale_crear_canal_path, method: :get %></li>
+                        <!--li>Mis Canales</li>-->
+                        <li><%= link_to 'Buscar Canales', '/canales?cha=', method: :get %></li>
+                    </ul>
+                </li>
+                <li>
+                    <!--
+                    <a href="nalinformatica.html"><i class="fa fa-diamond"></i> <span class="nav-label">Áreas de Conocimientos</span> <span class="label label-primary pull-right">NUEVO</span></a>
+                    -->
+                </li>
+
+                <li>
+                    <a data-toggle="collapse" data-target="#padre3"><i class="fa fa-envelope"></i> <span class="nav-label">Mensajería </span><span class="label label-warning pull-right"><%= @mensaje_pendiente.count %></span></a>
+                    <ul class="nav nav-second-level collapse" id="padre3">
+                        <li><%= link_to 'Buzón', mensaje_buzon_path, method: :get %></li>
+                        <li><%= link_to 'Redactar Mensajes', mensaje_redactar_mensaje_path, method: :get %></li>
+                    </ul>
+                </li>
+                <!--
+                             <li>
+                    <a href="contactos.html"><i class="fa fa-desktop"></i> <span class="nav-label">Sugerencias de Contactos</span>  <span class="pull-right label label-primary">ESPECIAL</span></a>
+                </li>
+                -->
+                <li>
+                    <a data-toggle="collapse" data-target="#padre2"><i class="fa fa-files-o"></i> <span class="nav-label">Busquedas</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse" id="padre2">
+                        <li><%= link_to 'Buscar Contactos', '/busquedas/contactos?q=', method: :get %></li>
+                        <li><%= link_to 'Buscar Canales', '/canales?cha=', method: :get %></li>
+                    </ul>
+                </li>
+                <!--
+                <li>
+                    <a href="video.html"><i class="fa fa-globe"></i> <span class="nav-label">Sugerencias de Páginas</span><span class="label label-info pull-right">NEW</span></a>
+                </li>
+
+                <li>
+                    <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Opciones de Configuración</span></a>
+                </li>
+                -->
+                <li>
+                    
+                    <%= link_to '<i class="fa fa-picture-o"></i><span class="nav-label">Mi Álbum de fotos</span>'.html_safe, "/timeline/galeria/#{(session[:id])}", method: :get %>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+    
+    
+    
+    <div id="wrapper">
+        <div id="page-wrapper" class="gray-bg">
+    
+    <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary "><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" method="get" action="/busquedas/search">
+                <div class="form-group">
+                    <% if (params.has_key? params[:cha]) %>
+                        <input type="text" placeholder="Búsqueda..." class="form-control" name="cha" id="top-search" value="<%= params[:cha] %>">
+                    <% else %>
+                        <input type="text" placeholder="Búsqueda..." class="form-control" name="q" id="top-search" value="<%= params[:q] %>">
+                    <% end %>
+                </div>
+            </form>
+        </div>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Bienvenidos UCLABOOK+</span>
+                </li>
+                <!--
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="notifications.html">
+                        <i class="fa fa-envelope" style="color: darkgray;"></i>  <span class="label label-warning">16</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="perfil.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a7.jpg">
+                                </a>
+                                <div class="media-body">
+                                    <small class="pull-right">6h feb</small>
+                                    <strong>Joel</strong> compartiendo con <strong>Maria Laurath</strong>. <br>
+                                    <small class="text-muted">3 días feb 7:58 pm - 10.02.2017</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="perfil.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/a4.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right text-navy">5h feb </small>
+                                    <strong>Johnatan Sanchez</strong> compartiendo con <strong>Sohecdy Ávila</strong>. <br>
+                                    <small class="text-muted">ayer 1:21 pm - 06.02.2017</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="dropdown-messages-box">
+                                <a href="perfil.html" class="pull-left">
+                                    <img alt="image" class="img-circle" src="img/profile.jpg">
+                                </a>
+                                <div class="media-body ">
+                                    <small class="pull-right">23h ago</small>
+                                    <strong>Yessica López</strong> compartiendo con <strong>Manuel Lozada</strong>. <br>
+                                    <small class="text-muted">2 días feb  2:30 pm - 18.02.2017</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="buzon.html">
+                                    <i class="fa fa-envelope"></i> <strong>Leer todos los Mensajes</strong>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle count-info" data-toggle="dropdown" href="notifications.html">
+                        <i class="fa fa-bell" style="color: darkgray;"></i>  <span class="label label-primary">8</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-alerts">
+                        <li>
+                            <a href="ver_mensaje.html">
+                                <div>
+                                    <i class="fa fa-envelope fa-fw"></i> Tienes 16 mensajes
+                                    <span class="pull-right text-muted small">4 minutos feb</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="perfil.html">
+                                <div>
+                                    <i class="fa fa-twitter fa-fw"></i> 3 Nuevas Notificaciones
+                                    <span class="pull-right text-muted small">12 minutos feb</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="video.html">
+                                <div>
+                                    <i class="fa fa-upload fa-fw"></i> Servicios Adicionales
+                                    <span class="pull-right text-muted small">4 minutos feb</span>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <div class="text-center link-block">
+                                <a href="notifications.html">
+                                    <strong>Ver Alertas</strong>
+                                    <i class="fa fa-angle-right"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                -->
+
+                <li>
+                    <%= link_to '<i class="fa fa-sign-out" style="color: darkgray;"></i>'.html_safe, log_out_path, method: :get %>
+                </li>
+            </ul>
+
+        </nav>
+        </div>
+
+<%= yield %>
+
+
+  </div>
+        </div>
+
+</body>
+</html>
